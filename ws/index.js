@@ -1,10 +1,11 @@
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const db = require("./database")
 const cors = require("cors")
 
-
+console.log(process.env.IAM_USER_KEY);
 
 //middlewares
 app.use(morgan("dev"))
