@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const URI = "mongodb+srv://salaoUser:G9iKgAATF407QJir@clusterdev.ta7xn.mongodb.net/salaoTS?retryWrites=true&w=majority";
+const URI = process.env.URI
 
 
 // MONGO DB ATT Não utiliza-se mais.
