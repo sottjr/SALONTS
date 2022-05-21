@@ -2,22 +2,27 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const db = require("./database")
 const cors = require("cors")
+const busboy = require('connect-busboy')
+const busboyBodyParser = require('busboy-body-parser');
+const db = require("./database")
 
-console.log(process.env.IAM_USER_KEY);
 
 //middlewares
-app.use(morgan("dev"))
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(busboy());
+app.use(busboyBodyParser());
+app.use(cors());
 
 //variables
 app.set("port", 8000);
-app.use(express.json());
-app.use(cors())
+
 
 
 //rotas
-app.use(require("./src/routes/salao.routes"))
+app.use("/salao", require("./src/routes/salao.routes"))
+app.use("/servico",require("./src/routes/servico.routes"))
 
 
 app.listen(app.get("port"), () => {
