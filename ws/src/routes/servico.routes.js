@@ -17,12 +17,12 @@ router.post("/", async (req, res) => {
             const { salaoId, servico } = req.body;
             let errors = [];
             let arquivos = [];
-
-            if (req.files && Object.keys(req.files) > 0) {
+            // console.log(req.files)
+            if (req.files && Object.keys(req.files).length > 0) {
                 for (let key of Object.keys(req.files)) {
                     const file = req.files[key];
 
-                    const nameParts = file.name.slit(".");
+                    const nameParts = file.name.split(".");
                     const fileName = `${new Date().getTime()}.${nameParts[nameParts.length - 1]
                         }`;
                     const path = `servicos/${salaoId}/${fileName}`;
